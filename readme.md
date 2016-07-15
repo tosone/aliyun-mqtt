@@ -9,6 +9,12 @@
 - `sudo apt install mosquitto`
 
 ### Test
+- Add redis keys
+```
+select 6
+set deviceId 0RWmNAYUMEJmwNc2R
+set deviceSecret u2PDAhO6JjYPdmA1
+```
 - test: `python test.py`
 - get: `python get.py`
 
@@ -16,7 +22,7 @@
 - Test device is online or not with bbcloud.
 
 ### Redis DB6 keys
-- deviceKey 
+- deviceKey
 - deviceSecret
 - host
 - port
