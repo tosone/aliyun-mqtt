@@ -15,8 +15,13 @@ select 6
 set deviceId 0RWmNAYUMEJmwNc2R
 set deviceSecret u2PDAhO6JjYPdmA1
 ```
-- test: `python test.py`
-- get: `python get.py`
+- test: `python aliyungateway.py`
+- get: `python test.py`
+
+### Install
+- `aliyun` dir
+- `device` dir
+- `aliyungateway.py` file
 
 ### TODO
 - Test device is online or not with bbcloud.

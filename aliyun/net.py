@@ -1,6 +1,8 @@
-import socket, time
+import socket
+import time
 
 REMOTE_SERVER = "www.baidu.com"
+
 
 def isConnected():
   try:
@@ -8,8 +10,9 @@ def isConnected():
     s = socket.create_connection((host, 80), 2)
     return True
   except:
-     pass
+    pass
   return False
+
 
 def continueTest():
   while True:
@@ -17,6 +20,6 @@ def continueTest():
       return True
       break
     else:
-      print "Device is not online.[" +time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) +"]"
+      print "Device is not online.[" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "]"
       time.sleep(10)
       continue

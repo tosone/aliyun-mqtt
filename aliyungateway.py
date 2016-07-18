@@ -7,7 +7,6 @@ import paho.mqtt.publish as publish
 import redis
 
 from aliyun import *
-from device import *
 
 appKey = "23360505"
 appSecret = "db1336ffcb784668302927979e7eeb77"
@@ -18,6 +17,10 @@ mqttHost = "192.168.1.3"
 mqttPort = 1883
 
 r = redis.StrictRedis(host=redisHost, port=redisPort, db=redisDB)
+
+r.set("deviceId", "0RWmNAYUMEJmwNc2R")
+r.set("deviceSecret", "u2PDAhO6JjYPdmA1")
+
 CONFIG = {
     "deviceId": r.get("deviceId"),
     "deviceSecret": r.get("deviceSecret"),
@@ -31,21 +34,24 @@ def innerMq(topic, payload):
 
 
 def onMessage(client, userdata, msg):
-  print(msg.topic + " " + str(msg.payload))
-  payload = json.loads(msg.payload.replace("'", "\""))
+  # print(msg.topic + " " + str(msg.payload))
+  try:
+    payload = json.loads(msg.payload.replace("'", "\""))
+  except:
+    print "AliyunIotGateway: receive error schema msg."
   innerMq(payload.get("deviceTopic"), json.dumps(payload.get("payload")))
-  print(msg.topic + " " + str(msg.payload))
+  # print(msg.topic + " " + str(payload))
 
 
 def onConnect(client, userdata, flags, rc):
-  payload = {
-      "deviceTopic": "test-cloud-gateway",
-      "payload": {
-          "corelationId": "d2eb3ac4-1174-4368-b8d9-19c5f06848b5",
-          "address": "http://baidu.com/test-cloud-gateway"
-      }
-  }
-  client.publish(appKey + "/devices/00:00:00:00:00:00", json.dumps(payload))
+  # payload = {
+  #     "deviceTopic": "test-cloud-gateway",
+  #     "payload": {
+  #         "corelationId": "d2eb3ac4-1174-4368-b8d9-19c5f06848b5",
+  #         "address": "http://baidu.com/test-cloud-gateway"
+  #     }
+  # }
+  # client.publish(appKey + "/devices/00:00:00:00:00:00", json.dumps(payload))
   print("AliyunIot Connected with result code " + str(rc))
 
 
@@ -57,7 +63,7 @@ def mqttConfig():
     mqttClient.subscribe(appKey + "/devices/00:00:00:00:00:00")
     mqttClient.loop_forever()
   except:
-    print "except with err after 3s will restart."
+    print "AliyunIotGateway: Except with err after 3s will restart."
     time.sleep(3)
     mqttConfig()
 
@@ -69,6 +75,6 @@ while True:
       mqttConfig()
       break
   else:
-    print "redis has no key about device."
+    print "AliyunIotGateway: Redis has no key about device."
     time.sleep(3)
     continue

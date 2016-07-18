@@ -1,3 +1,6 @@
 *.pem
 node_modules
 *.pyc
+bin
+nativeapps
+nativeapps_test
