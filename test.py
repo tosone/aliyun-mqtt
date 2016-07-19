@@ -19,6 +19,6 @@ def innerMqOnMsg(client, userdata, msg):
 client = mqtt.Client()
 client.on_connect = innerMqOnConnect
 client.on_message = innerMqOnMsg
-client.connect("192.168.1.3",  1883, 60)
+client.connect("localhost",  1883, 60)
 client.subscribe("apps_configuration/modify/request")
 client.loop_forever()

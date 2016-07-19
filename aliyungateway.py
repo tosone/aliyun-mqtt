@@ -10,10 +10,12 @@ from aliyun import *
 
 appKey = "23360505"
 appSecret = "db1336ffcb784668302927979e7eeb77"
+
 redisHost = 'localhost'
 redisPort = 6379
 redisDB = 6
-mqttHost = "192.168.1.3"
+
+mqttHost = "localhost"
 mqttPort = 1883
 
 r = redis.StrictRedis(host=redisHost, port=redisPort, db=redisDB)
@@ -34,7 +36,7 @@ def innerMq(topic, payload):
 
 
 def onMessage(client, userdata, msg):
-  # print(msg.topic + " " + str(msg.payload))
+  print(msg.topic + " " + str(msg.payload))
   try:
     payload = json.loads(msg.payload.replace("'", "\""))
   except:

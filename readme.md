@@ -9,19 +9,8 @@
 - `sudo apt install mosquitto`
 
 ### Test
-- Add redis keys
-```
-select 6
-set deviceId 0RWmNAYUMEJmwNc2R
-set deviceSecret u2PDAhO6JjYPdmA1
-```
-- test: `python aliyungateway.py`
-- get: `python test.py`
-
-### Install
-- `aliyun` dir
-- `device` dir
-- `aliyungateway.py` file
+- Test: `python aliyungateway.py`
+- Get info from inner MQTT Server: `python test.py`
 
 ### TODO
 - Test device is online or not with bbcloud.
