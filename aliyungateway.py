@@ -7,6 +7,9 @@ import paho.mqtt.publish as publish
 import redis
 
 from aliyun import *
+from thunder_sdk.helpers.singleton import SingleInstance
+
+singleIns = SingleInstance(flavor_id="aliyungateway")
 
 appKey = "23360505"
 appSecret = "db1336ffcb784668302927979e7eeb77"
