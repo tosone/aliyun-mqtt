@@ -2,12 +2,12 @@ rm -rf release
 
 mkdir release
 cd ./release
-mkdir bin
-mkdir nativeapps
-mkdir nativeapps_test
+mkdir -p ./usr/bin
+mkdir -p ./usr/nativeapps
+mkdir -p ./usr/nativeapps_test
 cd ..
 
 
-cp -r ./aliyun ./release/nativeapps
-cp  aliyungateway.py ./release/nativeapps
+cp -r ./aliyun ./release/usr/nativeapps
+cp  aliyungateway.py ./release/usr/nativeapps
 chmod -R 777 ./release
