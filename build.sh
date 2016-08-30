@@ -9,5 +9,5 @@ cd ..
 
 
 cp -r ./aliyun ./release/usr/nativeapps
-cp  aliyungateway.py ./release/usr/nativeapps
+cp aliyungateway.py ./release/usr/nativeapps
 chmod -R 777 ./release

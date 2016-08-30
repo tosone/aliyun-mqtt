@@ -8,23 +8,24 @@ import redis
 
 from aliyun import *
 from thunder_sdk.helpers.singleton import SingleInstance
+from thunder_sdk.constants.misc import *
 
 singleIns = SingleInstance(flavor_id="aliyungateway")
 
-appKey = "23360505"
-appSecret = "db1336ffcb784668302927979e7eeb77"
+appKey = "23390947"
+appSecret = "3ebb2e6c5034a1c496feba1f3c1d23c7"
 
-redisHost = 'localhost'
+redisHost = BROKER_ADDRESS
 redisPort = 6379
 redisDB = 6
 
-mqttHost = "localhost"
+mqttHost = BROKER_ADDRESS
 mqttPort = 1883
 
 r = redis.StrictRedis(host=redisHost, port=redisPort, db=redisDB)
 
-r.set("deviceId", "0RWmNAYUMEJmwNc2R")
-r.set("deviceSecret", "u2PDAhO6JjYPdmA1")
+r.set("deviceId", "90a7c3c39dbb4c8a93755e5903169d3c")
+r.set("deviceSecret", "2af6c4c0591a4b238620ecf7933ecf71")
 
 CONFIG = {
     "deviceId": r.get("deviceId"),
