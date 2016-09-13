@@ -1,19 +1,17 @@
-# Aliyun iot-mqtt
+# Aliyun Cloud Gateway
 
 ### Package
 - `pip install paho-mqtt`
 - `pip install requests`
 - `pip install redis`
 
-### Step
+### Before Test
 - `sudo apt install mosquitto`
+- Redis DB 6 should set a key that `deviceKey`, `deviceSecret`
 
 ### Test
 - Test: `python aliyungateway.py`
 - Get info from inner MQTT Server: `python test.py`
-
-### TODO
-- Test device is online or not with bbcloud.
 
 ### Redis DB6 keys
 - deviceKey
@@ -22,7 +20,7 @@
 - port
 
 ### Notice
-- AliyunIot is unidirectional authentication, that you should set maho tls  cert_reqs is ssl.CERT_NONE.
+- AliyunIot is unidirectional authentication, that you should set maho tls cert_reqs is ssl.CERT_NONE.
 - You should subscribe a topic after connect mq server.
 
 ### Old Version
