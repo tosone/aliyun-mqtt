@@ -7,17 +7,19 @@
 
 ### Before Test
 - `sudo apt install mosquitto`
-- Redis DB 6 should set a key that `deviceKey`, `deviceSecret`
+- Redis DB 3 should set a key that `aliyunIoTDeviceKey`, `aliyunIoTDeviceSecret`
 
 ### Test
 - Test: `python aliyungateway.py`
 - Get info from inner MQTT Server: `python test.py`
 
-### Redis DB6 keys
-- deviceKey
-- deviceSecret
-- host
-- port
+### Redis DB3 keys
+- aliyunIoTDeviceKey
+- aliyunIoTDeviceSecret
+
+### ENV VARIABLE
+- aliyunIoTProductKey
+- aliyunIoTProductSecret
 
 ### Notice
 - AliyunIot is unidirectional authentication, that you should set maho tls cert_reqs is ssl.CERT_NONE.
