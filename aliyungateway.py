@@ -65,10 +65,10 @@ class AliyunCloudGateway():
 
     def main(self):
         while True:
-            if retrieve(self.key_prefix + "DeviceId") is not None and retrieve(self.key_prefix + "DeviceSecret") is not None:
+            if retrieve(self.key_prefix + "DeviceKey") is not None and retrieve(self.key_prefix + "DeviceSecret") is not None:
                 if net.isConnected() or net.continueTest():
-                    self.deviceId = retrieve(self.key_prefix + "DeviceId")
-                    self.deviceSecret = retrieve(self.key_prefix + "DeviceId")
+                    self.deviceId = retrieve(self.key_prefix + "DeviceKey")
+                    self.deviceSecret = retrieve(self.key_prefix + "DeviceSecret")
                     CONFIG = {
                         "deviceId": self.deviceId,
                         "deviceSecret": self.deviceSecret,
