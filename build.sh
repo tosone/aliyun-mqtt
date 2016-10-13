@@ -1,13 +1,12 @@
-rm -rf release
+#!/bin/bash
 
-mkdir release
-cd ./release
-mkdir -p ./usr/bin
-mkdir -p ./usr/nativeapps
-mkdir -p ./usr/nativeapps_test
-cd ..
+[[ -d release ]] && rm -rf release
 
+RELEASE_DIRECTORY=release/usr/nativeapps
 
-cp -r ./aliyun ./release/usr/nativeapps
-cp aliyungateway.py ./release/usr/nativeapps
-chmod -R 777 ./release
+mkdir -p ${RELEASE_DIRECTORY}
+
+cp -a aliyun ${RELEASE_DIRECTORY}
+cp aliyungateway.py ${RELEASE_DIRECTORY}
+
+chmod -R 777 release

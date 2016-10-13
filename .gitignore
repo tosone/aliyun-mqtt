@@ -5,3 +5,6 @@ bin
 nativeapps
 nativeapps_test
 thunder_sdk
+
+# Ignore the release directory.
+release/
