@@ -51,7 +51,8 @@ class AliyunCloudGateway():
             mqttClient.on_message = self.onMessage
             mqttClient.on_connect = self.onConnect
             mqttClient.loop_forever()
-        except:
+        except Exception as e:
+            logging.debug(e)
             logging.debug("AliyunCloudGateway: Except with err after 3s will restart.")
             time.sleep(self.interval_retry_start)
             self.retry = self.retry + 1

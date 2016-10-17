@@ -2,6 +2,7 @@ import base64
 
 import requests
 
+import config
 import getHash
 
 
@@ -12,7 +13,7 @@ def getCert(authAddress, appKey, appSecret, deviceId, deviceSecret):
     pubkey = base64.b64decode(res.get("pubkey"))
     host = res.get("servers").split(":")[0]
     port = res.get("servers").split(":")[1].split("|")[0]
-    file = open("key.pem", "w+")
+    file = open(config.definition().get("KEY_PEM_FILE"), "w+")
     file.write(pubkey)
     file.close()
     return {

@@ -16,10 +16,20 @@ def isConnected():
 
 def continueTest():
     while True:
-        if(isConnected()):
+        if isConnected():
             return True
             break
         else:
             print "Device is not online.[" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "]"
-            time.sleep(10)
+            time.sleep(1)
+            continue
+
+
+def continueTestNotOnline():
+    while True:
+        if not isConnected():
+            return True
+            break
+        else:
+            time.sleep(1)
             continue
