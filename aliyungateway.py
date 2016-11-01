@@ -24,8 +24,8 @@ class AliyunCloudGateway():
         self.interval_retry_start = 3
         self.retry = 0
         self.retry_times = 5
-        self.productKey = os.environ.get(self.key_prefix + "ProductKey")
-        self.productSecret = os.environ.get(self.key_prefix + "ProductSecret")
+        self.productKey = "23390947"  # os.environ.get(self.key_prefix + "ProductKey")
+        self.productSecret = "3ebb2e6c5034a1c496feba1f3c1d23c7"  # os.environ.get(self.key_prefix + "ProductSecret")
         self.deviceMac = device.get_mac_address()
         self.aliyun = aliyun
         self.publish = publish
@@ -34,7 +34,7 @@ class AliyunCloudGateway():
         self.publish.single(topic, payload, hostname=BROKER_ADDRESS)
 
     def onMessage(self, client, userdata, msg):
-        logging.info(msg.topic + " " + str(msg.payload))
+        logging.info(msg.topic + " " + str(msg.payload) + " " + "qos=" + str(msg.qos))
         try:
             payload = json.loads(msg.payload.replace("'", "\""))
             self.innerMq(payload.get("deviceTopic"), json.dumps(payload.get("payload")))
@@ -42,14 +42,16 @@ class AliyunCloudGateway():
             logging.debug("AliyunCloudGateway: receive error schema msg.")
 
     def onConnect(self, client, userdata, flags, rc):
-        client.subscribe(self.productKey + "/devices/" + self.deviceMac)
+        print self.productKey + "/devices/" + self.deviceMac
+        client.subscribe(self.productKey + "/devices/" + self.deviceMac, qos=1)
+        # client.publish(self.productKey + "/devices/" + self.deviceMac, json.dumps({"sad": "sad"}), qos=1)
         logging.info("AliyunCloudGateway Connected with result code " + str(rc))
 
     def iotConn(self):
         try:
             mqttClient = self.aliyunClient.connect()
-            mqttClient.on_message = self.onMessage
             mqttClient.on_connect = self.onConnect
+            mqttClient.on_message = self.onMessage
             mqttClient.loop_forever()
         except Exception as e:
             logging.debug(e)
@@ -68,8 +70,8 @@ class AliyunCloudGateway():
         while True:
             if retrieve(self.key_prefix + "DeviceKey") is not None and retrieve(self.key_prefix + "DeviceSecret") is not None:
                 if net.isConnected() or net.continueTest():
-                    self.deviceId = retrieve(self.key_prefix + "DeviceKey")
-                    self.deviceSecret = retrieve(self.key_prefix + "DeviceSecret")
+                    self.deviceId = "8cb90006da524e1784611a3877da0e35"  # retrieve(self.key_prefix + "DeviceKey")
+                    self.deviceSecret = "14501e51fe884654b1403e7f50e8b20d"  # retrieve(self.key_prefix + "DeviceSecret")
                     CONFIG = {
                         "deviceId": self.deviceId,
                         "deviceSecret": self.deviceSecret,
